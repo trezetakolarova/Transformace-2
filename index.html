@@ -40,7 +40,10 @@
         .agenda-desc { font-size: 0.95em; color: #555; margin-bottom: 15px; padding-bottom: 10px; font-style: italic; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; font-size: 0.95em; }
-        .grid div { background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #e0e0e0; }
+        
+        /* Zde je to klíčové vylepšení pro odřádkování (white-space: pre-line) */
+        .grid div { background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #e0e0e0; white-space: pre-line; }
+        
         strong { color: #2c3e50; display: block; margin-bottom: 8px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px;}
         
         #error-msg { color: #e74c3c; font-weight: bold; text-align: center; padding: 20px; background: #fadbd8; border-radius: 8px; display: none; }
@@ -123,8 +126,6 @@
                 catData.items.forEach(item => {
                     const color = item['Semafor'] ? String(item['Semafor']).trim() : '';
                     const phase = item['Fáze'] ? String(item['Fáze']).trim() : 'Fáze neurčena';
-                    
-                    // ZDE JE UPRAVENÝ NÁZEV SLOUPCE
                     const targetState = item['Cílový stav (výstup)'] || ''; 
                     
                     let itemPct = item['% Hotovo'];
@@ -150,9 +151,9 @@
                     }
 
                     html += `<div class="grid">
-                            <div><strong>Co se udělalo:</strong>${item['Co se udělalo'] || '—'}</div>
-                            <div><strong>Co se udělá:</strong>${item['Co se udělá'] || '—'}</div>
-                            <div><strong>Rozhodnutí / Rizika:</strong>${item['Rozhodnutí / Rizika'] || '—'}</div>
+                            <div><strong>Co se udělalo:</strong>\n${item['Co se udělalo'] || '—'}</div>
+                            <div><strong>Co se udělá:</strong>\n${item['Co se udělá'] || '—'}</div>
+                            <div><strong>Rozhodnutí / Rizika:</strong>\n${item['Rozhodnutí / Rizika'] || '—'}</div>
                         </div>
                     </div>`;
                 });
